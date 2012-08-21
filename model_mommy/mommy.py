@@ -162,7 +162,7 @@ class Mommy(object):
             # If not specified, django automatically sets blank=True and
             # default on BooleanFields so we don't need to check these
             if not isinstance(field, BooleanField):
-                if field.has_default() or field.blank:
+                if (hasattr(field, 'has_default') and field.has_default()) or field.blank:
                     continue
 
             if isinstance(field, ManyToManyField):
